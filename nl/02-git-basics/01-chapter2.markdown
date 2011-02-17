@@ -1,6 +1,6 @@
 # De Basis van Git #
 
-Als je slechts één hoofdstuk kunt lezen om met Git aan de slag te gaan, dan is dit het. Dit hoofdstuk behandelt elk van de basiscommando's, die je nodig hebt om het leeuwendeel van de dingen te doen waarmee je uiteindelijk je tijd met Git zult doorbrengen. zul je een repository kunnen configureren en initialiseren, bestanden beginnen en stoppen te volgen en veranderingen te ‘stagen’ en ‘committen’. We laten ook zien hoe je Git kunt instellen zodat het bepaalde bestanden en bestandspatronen negeert, hoe je vergissingen snel en gemakkelijk ongedaan kunt maken, hoe je de geschiedenis van je project kan doorlopen en wijzigingen tussen commits kunt zien, en hoe je kan pushen en pullen van en naar andere repositories.
+Als je slechts één hoofdstuk kunt lezen om met Git aan de slag te gaan, dan is dit het. Dit hoofdstuk behandelt elk van de basiscommando's, die je nodig hebt om het leeuwendeel van de dingen te doen waarmee je uiteindelijk je tijd met Git zult doorbrengen. Aan het eind van het hoofdstuk zul je een repository kunnen configureren en initialiseren, beginnen en stoppen met het volgen van bestanden, en veranderingen ‘stagen’ en ‘committen’. We laten ook zien hoe je Git kunt instellen zodat het bepaalde bestanden en bestandspatronen negeert, hoe je vergissingen snel en gemakkelijk ongedaan kunt maken, hoe je de geschiedenis van je project kunt doorlopen en wijzigingen tussen commits kunt zien, en hoe je kan ‘pushen’ en ‘pullen’ naar en van andere repositories.
 
 ## Een Git Repository Verkrijgen ##
 
@@ -14,37 +14,37 @@ Als je een bestaand project in Git wilt volgen (track), dan moet je naar de proj
 
 Dit maakt een nieuwe submap aan genaamd .git, die alle noodzakelijke repository bestanden bevat – een Git repository skelet. Op dit punt wordt nog niets in je project gevolgd. (Zie Hoofdstuk 9 voor meer informatie over welke bestanden er precies in de `.git` map staan, die je zojuist gemaakt hebt.)
 
-Als je bestaande bestanden wilt gaan versie-beheren (in plaats van een lege map), dan zul je waarschijnlijk die bestanden beginnen te volgen en een eerste commit willen doen. Dit kun je bereiken door een paar git add commando's die de te volgen bestanden specificeren, gevolgd door een commit:
+Als je bestaande bestanden wilt gaan versie-beheren (in plaats van een lege map), dan zul je die bestanden moeten gaan volgen gevolgd door een eerste commit. Dit kun je bereiken door een paar git add commando's uit te voeren die de te volgen bestanden specificeren, gevolgd door een commit:
 
 	$ git add *.c
 	$ git add README
-	$ git commit –m 'initial project version'
+	$ git commit –m 'initiële project versie'
 
 We zullen zodadelijk beschrijven wat deze commando's doen. Op dit punt heb je een Git repository met gevolgde (tracked) bestanden en een eerste commit.
 
 ### Een Bestaand Repository Clonen ###
 
-Als je een kopie wilt van een bestaande Git repository — bijvoorbeeld een project waaraan je wilt bijdragen — dan is het git clone commando wat je nodig hebt. Als je bekend bent met andere versie-beheersystemen zoals Subversion, dan valt je op dat het commando 'clone' is en niet 'checkout'. Dit is een belangrijk verschil — Git ontvangt een kopie van bijna alle data die de server heeft. Iedere versie van ieder bestand van de hele geschiedenis van een project wordt binnengehaald als je `git clone` doet. In feite kun je, als je disk kapot gaat, iedere clone van iedere client gebruiken om de server terug in de status te brengen op het moment van clonen (al zou je wel wat hooks en dergelijke verliezen, maar alle versies van alle bestanden zouden er zijn-zie Hoofdstuk 4 voor meer informatie).
+Als je een kopie wilt van een bestaande Git repository — bijvoorbeeld een project waaraan je wilt bijdragen — dan heb je het git clone commando nodig. Als je bekend bent met andere versie-beheersystemen zoals Subversion, dan valt je op dat het commando 'clone' is en niet 'checkout'. Dit is een belangrijk verschil — Git ontvangt een kopie van bijna alle data die de server heeft. Iedere versie van ieder bestand van de hele geschiedenis van een project wordt binnengehaald als je `git clone` doet. In feite kun je, als je disk kapot gaat, iedere clone van iedere client gebruiken om de server terug in de status te brengen van het moment van clonen (al zou je wel wat hooks en dergelijke verliezen, maar alle versies van alle bestanden zouden er zijn-zie Hoofdstuk 4 voor meer informatie).
 
-Je cloned een repository met `git clone [url]`. Bijvoorbeeld, als je de Ruby Git bibliotheek genaamd Grit wilt clonen, kun je dit als volgt doen:
+Je clone-t een repository met `git clone [url]`. Bijvoorbeeld, als je de Ruby Git bibliotheek genaamd Grit wilt clonen, kun je dit als volgt doen:
 
 	$ git clone git://github.com/schacon/grit.git
 
-Dat maakt een map genaamd "grit" aan, initialiseert hierin een `.git` map, haalt alle data voor dat repository binnen, en doet een checkout van een werkkopie van de laatste versie. Als je in de nieuwe `grit` map gaat, zul je de project bestanden vinden, klaar om gebruikt of aan gewerkt te worden. Als je de repository in een map met een andere naam dan grit wilt clonen, dan kun je dit met de volgend commando regel specificeren:
+Dat maakt een map genaamd "grit" aan, initialiseert hierin een `.git` map, haalt alle data voor dat repository binnen, en doet een checkout van een werkkopie van de laatste versie. Als je in de nieuwe `grit` map gaat, zul je de project bestanden vinden, klaar om gebruikt of bewerkt te worden. Als je de repository in een map met een andere naam dan grit wilt clonen, dan kun je die naam als opvolgende optie aan de commando regel toevoegen:
 
 	$ git clone git://github.com/schacon/grit.git mygrit
 
 Dat commando doet hetzelfde als het vorige, maar dan heet de doelmap mygrit.
 
-Git heeft een aantal verschillende transport protocollen die je kunt gebruiken. Het vorige voorbeeld maakt gebruik van het `git://` protocol, maar je kunt ook `http(s)://` of `gebruiker@server:/pad.git` tegenkomen, dat het SSH transport protocol gebruikt. Hoofdstuk 4 zal alle beschikbare opties die de server kan gebruiken om je Git repository aan te kunnen, met daarbij de voors en tegens van elk.
+Git heeft een aantal verschillende transport protocollen die je kunt gebruiken. Het vorige voorbeeld maakt gebruik van het `git://` protocol, maar je kunt ook `http(s)://` of `gebruiker@server:/pad.git` tegenkomen, dat het SSH transport protocol gebruikt. In hoofdstuk 4 komen alle beschikbare methoden aan bod die de server kan gebruiken om je Git repository te kunnen benaderen, met daarbij de voors en tegens van elk.
 
 ## Wijzigingen Aan Het Repository Vastleggen ##
 
-Je hebt een bona fide Git repository en een checkout of werkkopie van de bestanden voor dat project. Je moet wat wijzigingen maken en deze committen in je repository, iedere keer zodra het project een status bereikt die je wilt vastleggen.
+Je hebt een bona fide Git repository en een checkout of werkkopie van de bestanden voor dat project. Je moet wat wijzigingen maken en deze committen als momentopname in je repository, iedere keer zodra het project een status bereikt die je wilt vastleggen.
 
-Onthoud dat ieder bestand in je werkmap in twee statussen kan verkeren: gevolgd (tracked) of niet gevolgd (untracked). Gevolgde bestanden zijn bestanden die in het laatste snapshot zaten; ze kunnen ongewijzigd, gewijzigd of staged zijn. Niet gevolgde bestanden zijn al het andere - ieder bestand in je werkmap dat niet in je laatste snapshot en niet in je staging gebied zit. Als je voor het eerst een repository cloned, zullen al je bestanden gevolgd en ongewijzigd zijn, omdat je ze zojuist ge-checkout en niet gewijzigd hebt.
+Onthoud dat ieder bestand in je werkmap in twee statussen kan verkeren: gevolgd (tracked) of niet gevolgd (untracked). Gevolgde bestanden zijn bestanden die in het laatste snapshot zaten; ze kunnen ongewijzigd, gewijzigd of staged zijn. Niet gevolgde bestanden zijn al het andere - ieder bestand in je werkmap dat niet in je laatste snapshot en niet in je staging gebied zit. Als je voor het eerst een repository clone-t, zullen al je bestanden gevolgd en ongewijzigd zijn, omdat je ze zojuist ge-checkout en niet gewijzigd hebt.
 
-Zodra je bestanden wijzigt, ziet Git ze als gewijzigd omdat je ze veranderd hebt sinds je laatste commit. Je staged deze gewijzigde bestanden en commit al je ge-stagede wijzigingen, en de cyclus herhaalt zichzelf. Deze cyclus wordt in Figuur 2-1 geïllusteerd.
+Zodra je bestanden bewerkt, ziet Git ze als gewijzigd omdat je ze veranderd hebt sinds je laatste commit. Je stage-t deze gewijzigde bestanden en commit al je ge-stagede wijzigingen, en de cyclus herhaalt zichzelf. Deze cyclus wordt in Figuur 2-1 geïllustreerd.
 
 Insert 18333fig0201.png 
 Figuur 2-1. De levenscyclus van de status van je bestanden.
@@ -57,9 +57,9 @@ Het hoofdcommando dat je zult gebruiken om te bepalen welk bestand zich in welke
 	# On branch master
 	nothing to commit (working directory clean)
 
-Dit betekend dat je een schone werkmap hebt-met andere woorden, er zijn geen gevolgde en gewijzigde bestanden. Git ziet ook geen ongevolgde bestanden, anders zouden ze hier getoond worden. Als laatste verteld het commando op welke tak (branch) je nu zit. Voor nu is dit altijd de master, dat is de standaard; maak je je hier nog niet druk om. Het volgende hoofdstuk gaat in detail over takken en referenties.
+Dit betekent dat je een schone werkmap hebt-met andere woorden, er zijn geen gevolgde en gewijzigde bestanden. Git ziet ook geen ongevolgde bestanden, anders zouden ze hier getoond worden. Als laatste vertelt het commando op welke tak (branch) je nu zit. Voor nu is dit altijd de master, dat is de standaard; maak je je hier nog niet druk om. Het volgende hoofdstuk gaat in detail over takken en referenties.
 
-Stel dat je een nieuw bestand toevoegd aan je project, en simpel README bestand. Als het bestand voorheen nog niet bestond, en je doet `git status`, dan zul je je ongevolgde bestand zo zien:
+Stel dat je een nieuw bestand toevoegt aan je project, een simpel README bestand. Als het bestand voorheen nog niet bestond, en je doet `git status`, dan zul je je ongevolgde bestand zo zien:
 
 	$ vim README
 	$ git status
@@ -70,11 +70,11 @@ Stel dat je een nieuw bestand toevoegd aan je project, en simpel README bestand.
 	#	README
 	nothing added to commit but untracked files present (use "git add" to track)
 
-Je kunt zien dat je nieuwe README bestand ongevolgd is, omdat het onder de “Untracked files” kop staat in je status output. Ongevolgd betekend eigenlijk dat Git een bestand ziet dat je niet in het vorige snapshot (commit) had; Git zal het niet in je commit snapshots toevoegen totdat jij haar er expliciet om vraagt. Ze doet dit zodat jij niet per ongeluk gegenereerde binaire bestanden toevoegd, of andere bestanden die je niet wou toevoegen. Je wilt dit README bestand wel toevoegen, dus laten we het gaan volgen.
+Je kunt zien dat je nieuwe README bestand ongevolgd is, omdat het onder de “Untracked files” kop staat in je status output. Ongevolgd betekend eigenlijk dat Git een bestand ziet dat je niet in de vorige momentopname (commit) had; Git zal het niet aan je commit momentopnames toevoegen totdat jij een expliciete opdracht geeft. Git doet dit zodat jij niet per ongeluk gegenereerde binaire bestanden toevoegt, of andere bestanden die je niet wilde toevoegen. Je wilt dit README bestand wel toevoegen, dus laten we het gaan volgen.
 
 ### Nieuwe Bestanden Volgen (Tracking) ###
 
-Om een nieuw bestand te beginnen te volgen, gebruik je het commando `git add`. Om de README te volgen, kun je dit uitvoeren:
+Om een nieuw bestand te kunnen gaan volgen, gebruik je het commando `git add`. Om de README te volgen, kun je dit uitvoeren:
 
 	$ git add README
 
@@ -88,11 +88,11 @@ Als je je status commando nogmaals uitvoert, zie je dat je README bestand nu gev
 	#	new file:   README
 	#
 
-Je kunt zien dat het ge-staged is, omdat het onder de kop “Changes to be committed” staat. Als je op dit punt een commit doet, zal de versie van het bestand zoals het wat ten tijde van je git add commando in de historische snapshot toegevoegd worden. Je zult je misschien herinneren dat, toen je git init eerder uitvoerde, je daarna git add (bestanden) uitvoerde — dat was om bestanden in je map te beginnen te volgden. Het git add commando neemt een padnaam voor een bestand of een map; als het een map is, dan voegt het commando alle bestanden in die map recursief toe.
+Je kunt zien dat het ge-staged is, omdat het onder de kop “Changes to be committed” staat. Als je op dit punt een commit doet, zal de versie van het bestand zoals het was ten tijde van je git add commando in de historische momentopname toegevoegd worden. Je zult je misschien herinneren dat, toen je git init eerder uitvoerde, je daarna git add (bestanden) uitvoerde — dat was bedoeld om bestanden in je map te gaan volgen. Het git add commando krijgt een padnaam voor een bestand of een map als argument; als het een map is, dan voegt het commando alle bestanden in die map recursief toe.
 
 ### Gewijzigde Bestanden Stagen ###
 
-Laten we een gevolgd bestand wijzigen. Als je een voorheen gewijzigd bestand genaamd `benchmarks.rb` wijzigd, en dan je `status` commando nog eens uitvoerd, krijg je iets dat er zo uitziet:
+Laten we een gevolgd bestand wijzigen. Als je een voorheen gewijzigd bestand genaamd `benchmarks.rb` wijzigt, en dan je `status` commando nog eens uitvoert, krijg je iets dat er zo uitziet:
 
 	$ git status
 	# On branch master
@@ -107,7 +107,7 @@ Laten we een gevolgd bestand wijzigen. Als je een voorheen gewijzigd bestand gen
 	#	modified:   benchmarks.rb
 	#
 
-Het benchmarks.rb bestand verschijnt onder een sectie genaamd “Changed but not updated” — wat betekend dat een bestand dat gevolgd wordt gewijzigd is in de werkmap, maar nog niet ge-staged. Om het te stagen, voer je het `git add` commando uit (het is een veelzijdig commando — je gebruikt het om bestanden te volgen, om bestanden te stagen, en andere dingen zoals een bestand met een mergeconflict als opgelost te markeren). Laten we `git add` nu uitvoeren om het benchmarks.rb bestand nu te stagen, en dan nog eens `git status`:
+Het benchmarks.rb bestand verschijnt onder een sectie genaamd “Changed but not updated” — wat betekent dat een bestand dat gevolgd wordt gewijzigd is in de werkmap, maar nog niet ge-staged. Om het te stagen, voer je het `git add` commando uit (het is een veelzijdig commando — je gebruikt het om bestanden te volgen, om bestanden te stagen, en andere dingen zoals een bestand met een mergeconflict als opgelost te markeren). Laten we `git add` nu uitvoeren om het benchmarks.rb bestand nu te stagen, en dan nog eens `git status`:
 
 	$ git add benchmarks.rb
 	$ git status
@@ -136,7 +136,7 @@ Beide bestanden zijn ge-staged en zullen in je volgende commit gaan. Stel dat je
 	#	modified:   benchmarks.rb
 	#
 
-Hé! Nu staat benchmarks.rb zowel bij de staged en unstaged. Hoe kan dat? Het blijkt dat Git een bestand staged precies zoals het is wanneer je het git add commando uitvoerd. Als je nu commit, dan zal de versie van benchmarks.rb zoals het was toen je voor 't laatst git add uitvoerde worden toegevoegd in de commit, en niet de versie van het bestand zoals ie eruit zit in je map wanneer je git commit uitvoerd. Als je een bestand wijzigd nadat je `git add` uitvoert, dan moet je `git add` nogmaals uitvoeren om de laatste versie van het bestand te stagen:
+Hé! Nu staat benchmarks.rb zowel bij de staged en unstaged. Hoe kan dat? Het blijkt dat Git een bestand stage-t precies zoals het is wanneer je het git add commando uitvoert. Als je nu commit, dan zal de versie van benchmarks.rb worden toegevoegd in de commit zoals het bestand was toen je voor het laatst git add uitvoerde , en niet zoals het eruit ziet in je werkmap wanneer je git commit uitvoert. Als je een bestand wijzigt nadat je `git add` uitvoert, dan moet je `git add` nogmaals uitvoeren om de laatste versie van het bestand te stagen:
 
 	$ git add benchmarks.rb
 	$ git status
@@ -150,22 +150,22 @@ Hé! Nu staat benchmarks.rb zowel bij de staged en unstaged. Hoe kan dat? Het bl
 
 ### Bestanden Negeren ###
 
-Vaak zul je een klasse bestanden hebben waarvan je niet wilt dat Git deze automatisch toevoegd of zelfs maar als ongevolgd toont. Dit zijn doorgaans automatisch gegenereerde bestanden zoals logbestanden of bestanden die geproduceerd worden door je bouwsysteem. In die gevallen kun je een bestand genaamd .gitignore maken, waarin patronen staan die die bestanden passen. Hier is een voorbeeld .gitignore bestand:
+Vaak zul je een klasse bestanden hebben waarvan je niet wilt dat Git deze automatisch toevoegt of zelfs maar als ongevolgd toont. Dit zijn doorgaans automatisch gegenereerde bestanden zoals logbestanden of bestanden die geproduceerd worden door je bouwsysteem. In die gevallen kun je een bestand genaamd .gitignore maken, waarin patronen staan die op die bestanden passen. Hier is een voorbeeld van een .gitignore bestand:
 
 	$ cat .gitignore
 	*.[oa]
 	*~
 
-De eerste regel verteld Git om ieder bestand dat eindigt op een .o of .a – object en archief bestanden die het product kunnen zijn van het bouwen van je code. De tweede regel verteld Git dat ze alle bestanden die eindigen op een tilde (`~`), wat gebruikt wordt door editors zoals Emacs om tijdelijke bestanden te markeren, mag negeren. Je mag ook log, tmp of een pid map toevoegen; automatisch gegenereerde documentatie; enzovoort. Een .gitignore bestand aanmaken voordat je gaat beginnen is over 't algemeen een goed idee, zodat je niet per ongelijk bestanden commit die je echt niet in je repository wilt hebben.
+De eerste regel vertelt Git om ieder bestand te negeren dat eindigt op .o of .a – dit zijn object en archief bestanden die het product kunnen zijn van het compileren van je code. De tweede regel laat Git alle bestanden negeren die eindigen op een tilde (`~`), een karakter dat door editors als Emacs gebruikt wordt om tijdelijke bestanden te markeren. Je zou ook een log, tmp of pid map kunnen toevoegen; automatisch gegenereerde documentatie; enzovoort. Een .gitignore bestand aanmaken voordat je gaat beginnen is over het algemeen een goed idee, zodat je niet per ongeluk bestanden commit die je echt niet in je repository wilt hebben.
 
-De regels voor patronen die je in het .gitignore bestand kunt zetten zijn als volgt:
+De regels voor patronen die je in het .gitignore bestand kunt gebruiken zijn als volgt:
 
 *	Lege regels of regels die beginnen met een # worden genegeerd.
 *	Standaard expansie patronen werken.
-*	Je mag patronen laten eindigen op een slash (`\`) om een map te specificeren.
+*	Je mag patronen laten eindigen op een voorwaartse slash (`/`) om een map te specificeren.
 *	Je mag een patroon ontkennend maken door het te laten beginnen met een uitroepteken (`!`).
 
-Expansie (`glob`) patronen zijn vereenvoudigde reguliere expressies die shell omgevingen gebruiken. Een sterretje (`*`) komt overeen met nul of meer karakters; `[abc]` komt overeen met ieder karakter dat tussen de blokhaken staat (in dit geval a, b of c); een vraagteken (`?`) komt overeen met een enkel karakter; en blokhaken waar tussen karakters staan die gescheiden zijn door een streepje (`[0-9]`) komen overeen met ieder karakter wat tussen die karakters zit (in dit geval 0 tot en met 9).
+Expansie (`glob`) patronen zijn vereenvoudigde reguliere expressies die door shell omgevingen gebruikt worden. Een sterretje (`*`) komt overeen met nul of meer karakters; `[abc]` komt overeen met ieder karakter dat tussen de blokhaken staat (in dit geval a, b of c); een vraagteken (`?`) komt overeen met een enkel karakter; en blokhaken waartussen karakters staan die gescheiden zijn door een streepje (`[0-9]`) komen overeen met ieder karakter dat tussen die karakters zit (in dit geval 0 tot en met 9).
 
 Hier is nog een voorbeeld van een .gitignore bestand:
 
@@ -180,7 +180,7 @@ Hier is nog een voorbeeld van een .gitignore bestand:
 
 Als het `git status` commando te vaag is voor je – je wilt precies weten wat je veranderd hebt, niet alleen welke bestanden veranderd zijn – dan kun je het `git diff` commando gebruiken. We zullen `git diff` later in meer detail bespreken; maar je zult het het meest gebruiken om deze twee vragen te beantwoorden: Wat heb je veranderd maar nog niet gestaged? En wat heb je gestaged en sta je op het punt te committen? Alhoewel `git status` deze vragen heel algemeen beantwoordt, laat `git diff` je de exacte toegevoegde en verwijderde regels zien – de patch, als het ware.
 
-Stel dat je het README bestand opnieuw veranderd en staged, en dan het benchmarks.rb bestand veranderd zonder het te stagen. Als je je `status` commando uitvoert, dan zie je nogmaals zoiets als dit:
+Stel dat je het README bestand opnieuw verandert en stage-t, en dan het benchmarks.rb bestand verandert zonder het te stagen. Als je je `status` commando uitvoert, dan zie je nogmaals zoiets als dit:
 
 	$ git status
 	# On branch master
@@ -195,7 +195,7 @@ Stel dat je het README bestand opnieuw veranderd en staged, en dan het benchmark
 	#	modified:   benchmarks.rb
 	#
 
-Om te zien wat je gewijzigd maar nog niet gestaged hebt, typ `git diff` in zonder verdere argumenten:
+Om te zien wat je gewijzigd maar nog niet gestaged hebt, type `git diff` in zonder verdere argumenten:
 
 	$ git diff
 	diff --git a/benchmarks.rb b/benchmarks.rb
@@ -231,9 +231,9 @@ Als je wilt zien wat je gestaged hebt en in je volgende commit zal zitten, dan k
 	+
 	+Grit is a Ruby library for extracting information from a Git repository
 
-Het is belangrijk om te zien dat `git diff` zelf niet alle wijzigingen sinds je laatste commit laat zien – alleen wijzigingen die nog niet gestaged zijn. Dit kan verwarrend zijn, omdat als je al je wijzigingen gestaged hebt, `git diff` geen output zal geven.
+Het is belangrijk om in te zien dat `git diff` zelf niet alle wijzigingen sinds je laatste commit laat zien – alleen wijzigingen die nog niet gestaged zijn. Dit kan verwarrend zijn, omdat als je al je wijzigingen gestaged hebt, `git diff` geen output zal geven.
 
-Nog een voorbeeld. Als je het benchmarks.rb bestand staged, en vervolgens veranderd, dan kun je `git diff` gebruiken om de wijzigingen in het bestand te zien dat gestaged is en de wijzigingen die niet gestaged zijn:
+Nog een voorbeeld. Als je het benchmarks.rb bestand stage-t, en vervolgens verandert, dan kun je `git diff` gebruiken om de wijzigingen in het bestand te zien die gestaged zijn en de wijzigingen die niet gestaged zijn:
 
 	$ git add benchmarks.rb
 	$ echo '# test line' >> benchmarks.rb
